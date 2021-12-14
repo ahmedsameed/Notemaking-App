@@ -2,19 +2,18 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"                  //Bootstrap CSS
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <title>NOTEMAKER</title>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">                                                  //Creating Navigation bar 
     <a class="navbar-brand" href="#">NOTEMAKER</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,12 +66,12 @@
     </div>
 
 
-    <button   id="add" class="btn btn-primary">Add to list</button>
+    <button   id="add" class="btn btn-primary">Add to list</button>                                     //Adding add and clear button for functionality
     <button  id="clear" class="btn btn-primary" onclick="clearStorage()">Clear list</button>
 
 
     <div id="items" class="my-4">
-        <h2>Saved Notes</h2>
+        <h2>Saved Notes</h2>                                                                            //Showing saved notes from memory 
         <table class="table">
             <thead>
             <tr>
@@ -96,7 +95,7 @@
 </div>
 
 <!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->                                                       //Bootstrap code for Boilerplate
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -108,7 +107,7 @@
         crossorigin="anonymous"></script>
 <script>
             function getAndUpdate(){
-                console.log("Updating List...");
+                console.log("Updating List...");                                            //Adding a title and description to the notepad
                 tit = document.getElementById('title').value;
                 desc = document.getElementById('description').value;
                 if (localStorage.getItem('itemsJson')==null){
@@ -126,7 +125,7 @@
             }
 
             function update(){
-                if (localStorage.getItem('itemsJson')==null){
+                if (localStorage.getItem('itemsJson')==null){                               //Updating memory with addition of new note/s
                     itemJsonArray = [];
                     localStorage.setItem('itemsJson', JSON.stringify(itemJsonArray))
                 }
@@ -135,7 +134,7 @@
                     itemJsonArray = JSON.parse(itemJsonArrayStr);
                 }
                 // Populate the table
-                let tableBody = document.getElementById("tableBody");
+                let tableBody = document.getElementById("tableBody");                           //Storing the input inofrmation by the user in tabular form 
                 let str = "";
                 itemJsonArray.forEach((element, index) => {
                     str += `
@@ -151,7 +150,7 @@
             add = document.getElementById("add");
             add.addEventListener("click", getAndUpdate);
             update();
-            function deleted(itemIndex){
+            function deleted(itemIndex){                                            //function to delete a note from the memory
                 console.log("Delete", itemIndex);
                 itemJsonArrayStr = localStorage.getItem('itemsJson')
                 itemJsonArray = JSON.parse(itemJsonArrayStr);
@@ -161,10 +160,13 @@
                 update();
 
             }
-            function clearStorage(){
+            function clearStorage(){                                            //function to clear memory; this will delete all notes from the memory
                 if (confirm("Are you Sure?")){
                 console.log('Clearing the storage')
                 localStorage.clear();
                 update()
                 }
+            }
     </script>
+    </body>
+    </html>
